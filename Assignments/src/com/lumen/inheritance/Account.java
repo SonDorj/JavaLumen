@@ -2,7 +2,7 @@ package com.lumen.inheritance;
 
 public class Account {
 	double balance;
-	
+
 	public Account(double balance) {
 		super();
 		this.balance = balance;

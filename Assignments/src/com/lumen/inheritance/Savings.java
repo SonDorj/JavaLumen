@@ -16,5 +16,5 @@ public class Savings extends Account {
 		super.deposit(amount);
 		balance+=10;
 	}
-	
+
 }

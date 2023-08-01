@@ -20,7 +20,7 @@ public class Perfect_10 {
 		System.out.println(perfect(28));
 		System.out.println(perfect(496));
 		System.out.println(perfect(496));
-		
+
 	}
 
 }

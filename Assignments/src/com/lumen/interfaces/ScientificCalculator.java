@@ -15,7 +15,7 @@ public class ScientificCalculator implements Scientific {
 	public int square(int x) {
 		return x*x;
 	}
-	
+
 	@Override
 	public int cube(int x) {
 		return x*x*x;

@@ -12,7 +12,7 @@ public class Pyramid1_15 {
 			System.out.println();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		pyramid1(5);
 	}

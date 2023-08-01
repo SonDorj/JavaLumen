@@ -13,19 +13,19 @@ public class Book {
 		this.category = category;
 		this.price = price;
 	}
-	
+
 	void getDetails() {
 		System.out.println("Book Detail of :"+this.title);
 		System.out.println("Authored by :"+this.author);
 		System.out.println("Cost : $"+this.price);
 		System.out.println("Is a : "+this.category);
 	}
-	
+
 	String checkBookType() {
 		if(this.price>500)
 			return "Premium";
 		else
 			return "Standard";
 	}
-	
+
 }

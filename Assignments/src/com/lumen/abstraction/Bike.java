@@ -1,7 +1,7 @@
 package com.lumen.abstraction;
 
 public class Bike extends Vehicle {
-	
+
 	public Bike(String model, String brand, double price) {
 		super(model, brand, price);
 	}

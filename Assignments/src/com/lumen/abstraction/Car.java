@@ -2,8 +2,8 @@ package com.lumen.abstraction;
 
 public class Car extends Vehicle {
 	String[] Accessories;
-	
-	
+
+
 	public Car(String model, String brand, double price, String... accessories) {
 		super(model, brand, price);
 		Accessories = accessories;

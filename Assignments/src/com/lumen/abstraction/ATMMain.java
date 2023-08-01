@@ -11,7 +11,7 @@ public class ATMMain {
 		double amount;
 		boolean exit = false;
 		boolean exitAccount = false;
-		while(!exit) {	
+		while(!exit) {
 			System.out.print("\nATM\n1.savings\t2.current\t3.exit\nChoose Bank Account Type :\t");
 			choice = scanner.nextLine();
 			if(choice.equals("1"))
@@ -24,11 +24,11 @@ public class ATMMain {
 				System.out.println("enter valid choide");
 				continue;
 			}
-			while(!exitAccount && !exit) {	
+			while(!exitAccount && !exit) {
 				System.out.print("\nSavings\n1.withdraw\t2.deposit\t3.Balance\t4.exit\nChoose Action :\t");
 				choice = scanner.nextLine();
 				switch(choice) {
-				case "1": 
+				case "1":
 					System.out.print("Enter Amount: ");
 					amount=scanner.nextDouble();
 					scanner.nextLine();

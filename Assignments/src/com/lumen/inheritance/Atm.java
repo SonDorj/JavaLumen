@@ -21,16 +21,16 @@ public class Atm {
 				choice=scanner.nextInt();
 				while(choice<1||choice>3) {
 					System.out.println("Enter your choice: ");
-					choice=scanner.nextInt();					
+					choice=scanner.nextInt();
 				}
 				if(choice==1) {
 					System.out.println("Enter your amount: ");
-					double amount=scanner.nextInt();					
+					double amount=scanner.nextInt();
 					acc.withdraw(amount);
 				}
 				else if(choice==2) {
 					System.out.println("Enter your amount: ");
-					double amount=scanner.nextInt();					
+					double amount=scanner.nextInt();
 					acc.deposit(amount);
 				}
 				else if(choice==3) {
@@ -46,16 +46,16 @@ public class Atm {
 				choice=scanner.nextInt();
 				while(choice<1||choice>3) {
 					System.out.println("Enter your choice: ");
-					choice=scanner.nextInt();					
+					choice=scanner.nextInt();
 				}
 				if(choice==1) {
 					System.out.println("Enter your amount: ");
-					double amount=scanner.nextInt();					
+					double amount=scanner.nextInt();
 					acc.withdraw(amount);
 				}
 				else if(choice==2) {
 					System.out.println("Enter your amount: ");
-					double amount=scanner.nextInt();					
+					double amount=scanner.nextInt();
 					acc.deposit(amount);
 				}
 				else if(choice==3) {

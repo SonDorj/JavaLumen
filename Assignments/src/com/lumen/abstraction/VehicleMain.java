@@ -6,19 +6,19 @@ public class VehicleMain {
 		ride.printDetails();
 		ride.showMilage();
 		ride.showType();
-		
+
 		Car myCar = (Car)ride;
 		System.out.println("features: ");
 		for(String accessory: myCar.Accessories) {
 			System.out.print(accessory+", ");
 		}
 		System.out.println();
-		
+
 		ride= new Bike("X-tec 8","TVS",60_000d);
 		ride.printDetails();
 		ride.showMilage();
 		ride.showType();
-		
+
 		Bike myBike = (Bike)ride;
 		myBike.engineType();
 	}

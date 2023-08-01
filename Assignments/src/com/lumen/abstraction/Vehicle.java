@@ -14,7 +14,7 @@ public abstract class Vehicle {
 	void printDetails() {
 		System.out.println(model+" "+brand+" "+price);
 	}
-	
+
 	abstract void showMilage();
 	abstract void showType();
 }

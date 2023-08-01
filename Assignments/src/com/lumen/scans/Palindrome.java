@@ -12,7 +12,7 @@ public class Palindrome {
 		if(reverse==number) {
 			return true;
 		}
-		
+
 		return false;
 	}
 	public static void main(String[] args) {

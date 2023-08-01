@@ -6,7 +6,7 @@ public abstract class Bank {
 	public Bank(double balance) {
 		this.balance = balance;
 	}
-	
+
 	abstract void withdray(double amount);
 	abstract void deposit(double amount);
 	double getBalance() {

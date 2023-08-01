@@ -20,7 +20,7 @@ public class Armstrong_9 {
 			return true;
 		return false;
 	}
-	
+
 	public static void main(String[] args) {
 		System.out.println(armstrong(12));
 		System.out.println(armstrong(3));
