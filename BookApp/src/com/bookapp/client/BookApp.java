@@ -43,13 +43,13 @@ public class BookApp {
 					subMenu=scanner.nextLine();
 					switch(subMenu) {
 					case "1":	System.out.println("Enter the author: "); author=scanner.nextLine(); try {
-							System.out.println(bookService.getByAuthorContains(author));
+							bookService.getByAuthorContains(author).forEach(System.out::println);;
 						} catch (BookNotFoundException e) {
 							System.out.println(e.getMessage());
 						}
 						break;
 					case "2":	System.out.println("Enter the category: "); category=scanner.nextLine(); try {
-							System.out.println(bookService.getByCategory(category));
+							bookService.getByCategory(category).forEach(System.out::println);
 						} catch (BookNotFoundException e) {
 							System.out.println(e.getMessage());
 						}
@@ -57,7 +57,7 @@ public class BookApp {
 					case "3":	System.out.println("enter author: "); author=scanner.nextLine(); 
 								System.out.println("Enter the category: "); category=scanner.nextLine();
 						try {
-							System.out.println(bookService.getByAuthorContainsAndCategory(author, category));
+							bookService.getByAuthorContainsAndCategory(author, category).forEach(System.out::println);;
 						} catch (BookNotFoundException e) {
 							System.out.println(e.getMessage());
 						}
@@ -69,7 +69,7 @@ public class BookApp {
 						}
 						break;
 					case "5":	System.out.println("enter the price: "); price = scanner.nextDouble(); try {
-							System.out.println(bookService.getByPriceLessThan(price));
+							bookService.getByPriceLessThan(price).forEach(System.out::println);;
 						} catch (BookNotFoundException e) {
 							System.out.println(e.getMessage());
 						}

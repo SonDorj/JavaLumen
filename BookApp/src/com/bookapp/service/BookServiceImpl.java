@@ -29,7 +29,7 @@ public class BookServiceImpl implements IBookService {
 	public List<Book> getByAuthorContains(String author) throws BookNotFoundException {
 		List<Book> bookByAuthor = new ArrayList<>();
 		for (Book book : this.books)
-			if (book.getAuthor().contains(author))
+			if (book.getAuthor().toUpperCase().contains(author.toUpperCase()))
 				bookByAuthor.add(book);
 		if (bookByAuthor.size() == 0)
 			throw new BookNotFoundException("No book written by : " + author);
