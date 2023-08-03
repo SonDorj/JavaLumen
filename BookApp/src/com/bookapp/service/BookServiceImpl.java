@@ -8,16 +8,16 @@ import com.bookapp.model.Book;
 import com.bookapp.util.BookDetails;
 
 public class BookServiceImpl implements IBookService {
-	List<Book> books;
+	List<Book> books = new ArrayList<>();
 
 	public BookServiceImpl() {
 		super();
-		this.books = BookDetails.showBooks();
+		this.books = new ArrayList<>(BookDetails.showBooks());
 	}
 
 	@Override
 	public void addBook(Book book) {
-		books.add(book);
+		this.books.add(book);
 	}
 
 	@Override

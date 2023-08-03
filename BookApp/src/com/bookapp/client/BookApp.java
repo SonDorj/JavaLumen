@@ -35,6 +35,7 @@ public class BookApp {
 					System.out.print("Category: "); category=scanner.nextLine();
 					System.out.print("BookId: "); bookId=scanner.nextInt();
 					System.out.print("Price: "); price=scanner.nextDouble();
+					scanner.nextLine();
 					bookService.addBook(new Book(title,author,category,bookId,price));
 					break;
 				case "3": 

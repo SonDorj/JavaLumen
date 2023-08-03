@@ -10,7 +10,6 @@ public class Book {
 		super();
 	}
 	public Book(String title, String author, String category, Integer bookId, double price) {
-		super();
 		this.title = title;
 		this.author = author;
 		this.category = category;
