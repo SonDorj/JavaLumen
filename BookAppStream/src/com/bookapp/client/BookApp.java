@@ -42,37 +42,21 @@ public class BookApp {
 					System.out.print("\n1.press one to surf for books by authors\n2.press two to surf books by category\n3.press three to surf book by author and category\n4.press four to surf book by bookId\n5.press five to surf book by price\n6.press six to exit");
 					subMenu=scanner.nextLine();
 					switch(subMenu) {
-					case "1":	System.out.println("Enter the author: "); author=scanner.nextLine(); try {
+					case "1":	System.out.println("Enter the author: "); author=scanner.nextLine(); 
 							bookService.getByAuthorContains(author).forEach(System.out::println);;
-						} catch (BookNotFoundException e) {
-							System.out.println(e.getMessage());
-						}
 						break;
-					case "2":	System.out.println("Enter the category: "); category=scanner.nextLine(); try {
+					case "2":	System.out.println("Enter the category: "); category=scanner.nextLine();
 							bookService.getByCategory(category).forEach(System.out::println);
-						} catch (BookNotFoundException e) {
-							System.out.println(e.getMessage());
-						}
 						break;
 					case "3":	System.out.println("enter author: "); author=scanner.nextLine(); 
 								System.out.println("Enter the category: "); category=scanner.nextLine();
-						try {
 							bookService.getByAuthorContainsAndCategory(author, category).forEach(System.out::println);;
-						} catch (BookNotFoundException e) {
-							System.out.println(e.getMessage());
-						}
 						break;
-					case "4":	System.out.println("enter the Id: "); bookId = scanner.nextInt(); try {
+					case "4":	System.out.println("enter the Id: "); bookId = scanner.nextInt();
 							System.out.println(bookService.getById(bookId));
-						} catch (BookNotFoundException e) {
-							System.out.println(e.getMessage());
-						}
 						break;
-					case "5":	System.out.println("enter the price: "); price = scanner.nextDouble(); try {
+					case "5":	System.out.println("enter the price: "); price = scanner.nextDouble();
 							bookService.getByPriceLessThan(price).forEach(System.out::println);;
-						} catch (BookNotFoundException e) {
-							System.out.println(e.getMessage());
-						}
 						break;
 					case "6":	System.exit(0);
 					default:	System.out.println("enter valid choice");
@@ -81,7 +65,9 @@ public class BookApp {
 				default : System.out.println("enter valid choice");
 				}
 			}
-		}catch (Exception e) {
+		} catch (BookNotFoundException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
