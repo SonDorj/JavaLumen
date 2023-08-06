@@ -3,17 +3,17 @@ package com.bookapp.model;
 public class Book {
 	private String title;
 	private String author;
-	private String category;
+	private String genre;
 	private Integer bookId;
 	private double price;
 	public Book() {
 		super();
 	}
-	public Book(String title, String author, String category, Integer bookId, double price) {
+	public Book(Integer bookId, String title, String author, String genre, double price) {
 		super();
 		this.title = title;
 		this.author = author;
-		this.category = category;
+		this.genre = genre;
 		this.bookId = bookId;
 		this.price = price;
 	}
@@ -29,11 +29,11 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public String getCategory() {
-		return category;
+	public String getGenre() {
+		return genre;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 	public Integer getBookId() {
 		return bookId;
@@ -49,7 +49,7 @@ public class Book {
 	}
 	@Override
 	public String toString() {
-		return "Book [title=" + title + ", author=" + author + ", category=" + category + ", bookId=" + bookId
+		return "Book [title=" + title + ", author=" + author + ", genre=" + genre + ", bookId=" + bookId
 				+ ", price=" + price + "]";
 	}
 	

@@ -6,15 +6,14 @@ import com.bookapp.exception.BookNotFoundException;
 import com.bookapp.model.Book;
 
 public interface IBookService {
-	//crud operations
 	void addBook(Book book);
 	void updateBookPrice(int bookId, double price);
 	void deleteBook(int bookId);
 	
 	List<Book> getAll();
-	List<Book> getByAuthorContains(String author) throws BookNotFoundException;
-	List<Book> getByCategory(String category) throws BookNotFoundException;
-	List<Book> getByPriceLessThan(double price) throws BookNotFoundException;
-	List<Book> getByAuthorContainsAndCategory(String author, String category) throws BookNotFoundException;
-	Book getById(int bookId) throws BookNotFoundException;
+	List<Book> getByAuthorContains(String author);
+	List<Book> getByGenre(String genre);
+	List<Book> getByPriceLessThan(double price);
+	List<Book> getByAuthorContainsAndGenre(String author, String genre);
+	Book getByBookId(int bookId);
 }
