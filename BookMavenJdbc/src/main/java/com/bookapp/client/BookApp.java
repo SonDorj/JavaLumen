@@ -84,8 +84,13 @@ public class BookApp {
 								}
 							}
 							break;
-				case "4": System.out.println("Exiting..."); System.exit(0);
-				case "5": System.out.println("Exiting..."); System.exit(0);
+				case "4": 	System.out.println("Enter the BookId: "); bookId = scanner.nextInt(); scanner.nextLine();
+							System.out.println("Enter the new price: "); price = scanner.nextDouble(); scanner.nextLine();
+							bookService.updateBookPrice(bookId, price);
+							break;
+				case "5": 	System.out.println("Enter the BookId: "); bookId = scanner.nextInt(); scanner.nextLine();
+							bookService.deleteBook(bookId);
+							break;
 				case "6": System.out.println("Exiting..."); System.exit(0);
 				default : System.out.println("Enter valid choice");
 				}
