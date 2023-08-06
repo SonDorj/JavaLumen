@@ -24,29 +24,31 @@ public class BookDaoImpl implements IBookDao {
 			statement.setString(4, book.getGenre());
 			statement.setDouble(5, book.getPrice());
 			statement.execute();
+		} finally {
+			DbConnection.closeConnection();
 		}
 	}
 
 	@Override
-	public void updateBookPrice(int bookId, double price) {
+	public void updateBookPrice(int bookId, double price) throws SQLException  {
 		try (Connection connection = DbConnection.openConnection();
 				PreparedStatement statement=connection.prepareStatement(Queries.UPDATEPRICEQUERY);){
 			statement.setDouble(1, price);
 			statement.setInt(2, bookId);
 			statement.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} finally {
+			DbConnection.closeConnection();
 		}
 	}
 
 	@Override
-	public void deleteBook(int bookId) {
+	public void deleteBook(int bookId) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
 				PreparedStatement statement=connection.prepareStatement(Queries.DELETEQUERY);){
 			statement.setDouble(1, bookId);
 			statement.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} finally {
+			DbConnection.closeConnection();
 		}
 	}
 
@@ -63,10 +65,11 @@ public class BookDaoImpl implements IBookDao {
 				book.setAuthor(result.getString(3));
 				book.setGenre(result.getString(4));
 				book.setPrice(result.getDouble(5));
-				System.out.println(book);
 				books.add(book);
 			}
 			return books;
+		} finally {
+			DbConnection.closeConnection();
 		}
 	}
 
@@ -89,6 +92,8 @@ public class BookDaoImpl implements IBookDao {
 			if(!books.isEmpty())
 				return books;
 			throw new BookNotFoundException("Authors doesn't contain: "+author);
+		} finally {
+			DbConnection.closeConnection();
 		}
 	}
 
@@ -111,7 +116,9 @@ public class BookDaoImpl implements IBookDao {
 			if(!books.isEmpty())
 				return books;
 			throw new BookNotFoundException("No "+genre+" books");
-		} 
+		} finally {
+			DbConnection.closeConnection();
+		}
 	}
 
 	@Override
@@ -133,7 +140,9 @@ public class BookDaoImpl implements IBookDao {
 			if(!books.isEmpty())
 				return books;
 			throw new BookNotFoundException("No books under "+price+" rupees");
-		} 
+		} finally {
+			DbConnection.closeConnection();
+		}
 	}
 
 	@Override
@@ -156,7 +165,9 @@ public class BookDaoImpl implements IBookDao {
 			if(!books.isEmpty())
 				return books;
 			throw new BookNotFoundException("No books written by author with "+author+" in name and genre of "+genre);
-		} 
+		} finally {
+			DbConnection.closeConnection();
+		}
 	}
 
 	@Override
@@ -177,6 +188,8 @@ public class BookDaoImpl implements IBookDao {
 			if(book != null)
 				return book;
 			throw new BookNotFoundException("No book with id: "+bookId);
+		} finally {
+			DbConnection.closeConnection();
 		}
 	}
 

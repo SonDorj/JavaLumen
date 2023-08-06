@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.bookapp.dao.BookDaoImpl;
-import com.bookapp.dao.DbConnection;
 import com.bookapp.dao.IBookDao;
 import com.bookapp.exception.BookNotFoundException;
 import com.bookapp.model.Book;
@@ -17,10 +16,9 @@ public class BookServiceImpl implements IBookService {
 		try {
 			bookDao.addBook(book);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			DbConnection.closeConnection();
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -29,20 +27,25 @@ public class BookServiceImpl implements IBookService {
 		try {
 			return bookDao.findAll();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 		return null;
 	}
 
 	@Override
-	public List<Book> getByAuthorContains(String author){
+	public List<Book> getByAuthorContains(String author) {
 		try {
 			return bookDao.findByAuthorContains(author);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (BookNotFoundException e) {
 			System.out.println(e.getMessage());
-		} return null;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 
 	@Override
@@ -50,10 +53,13 @@ public class BookServiceImpl implements IBookService {
 		try {
 			return bookDao.findByGenre(genre);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (BookNotFoundException e) {
 			System.out.println(e.getMessage());
-		} return null;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 
 	@Override
@@ -61,10 +67,13 @@ public class BookServiceImpl implements IBookService {
 		try {
 			return bookDao.findByPriceLessThan(price);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (BookNotFoundException e) {
 			System.out.println(e.getMessage());
-		} return null;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 
 	@Override
@@ -72,10 +81,13 @@ public class BookServiceImpl implements IBookService {
 		try {
 			return bookDao.findByAuthorContainsAndGenre(author, genre);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (BookNotFoundException e) {
 			System.out.println(e.getMessage());
-		} return null;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 
 	@Override
@@ -83,10 +95,13 @@ public class BookServiceImpl implements IBookService {
 		try {
 			return bookDao.findById(bookId);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (BookNotFoundException e) {
 			System.out.println(e.getMessage());
-		} return null;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 
 	@Override
@@ -94,8 +109,9 @@ public class BookServiceImpl implements IBookService {
 		try {
 			bookDao.updateBookPrice(bookId, price);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -104,8 +120,9 @@ public class BookServiceImpl implements IBookService {
 		try {
 			bookDao.deleteBook(bookId);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 }
