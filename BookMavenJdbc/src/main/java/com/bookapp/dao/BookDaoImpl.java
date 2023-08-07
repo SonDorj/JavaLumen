@@ -23,7 +23,8 @@ public class BookDaoImpl implements IBookDao {
 			statement.setString(3, book.getAuthor());
 			statement.setString(4, book.getGenre());
 			statement.setDouble(5, book.getPrice());
-			statement.execute();
+			boolean flag = statement.execute();
+			System.out.println(flag);
 		} finally {
 			DbConnection.closeConnection();
 		}
@@ -74,7 +75,7 @@ public class BookDaoImpl implements IBookDao {
 	}
 
 	@Override
-	public List<Book> findByAuthorContains(String author) throws BookNotFoundException, SQLException {
+	public List<Book> findByAuthorContains(String author) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
 				PreparedStatement statement=connection.prepareStatement(Queries.QUERYBYAUTHOR);){
 			statement.setString(1, author);
@@ -89,16 +90,14 @@ public class BookDaoImpl implements IBookDao {
 				book.setPrice(result.getDouble(5));
 				books.add(book);
 			}
-			if(!books.isEmpty())
-				return books;
-			throw new BookNotFoundException("Authors doesn't contain: "+author);
+			return books;
 		} finally {
 			DbConnection.closeConnection();
 		}
 	}
 
 	@Override
-	public List<Book> findByGenre(String genre) throws BookNotFoundException, SQLException {
+	public List<Book> findByGenre(String genre) throws SQLException{
 		try (Connection connection = DbConnection.openConnection();
 				PreparedStatement statement=connection.prepareStatement(Queries.QUERYBYGENRE);){
 			statement.setString(1, genre);
@@ -113,16 +112,14 @@ public class BookDaoImpl implements IBookDao {
 				book.setPrice(result.getDouble(5));
 				books.add(book);
 			}
-			if(!books.isEmpty())
 				return books;
-			throw new BookNotFoundException("No "+genre+" books");
 		} finally {
 			DbConnection.closeConnection();
 		}
 	}
 
 	@Override
-	public List<Book> findByPriceLessThan(double price) throws BookNotFoundException,SQLException {
+	public List<Book> findByPriceLessThan(double price) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
 				PreparedStatement statement=connection.prepareStatement(Queries.QUERYBYPRICELESSTHAN);){
 			statement.setDouble(1, price);
@@ -137,16 +134,14 @@ public class BookDaoImpl implements IBookDao {
 				book.setPrice(result.getDouble(5));
 				books.add(book);
 			}
-			if(!books.isEmpty())
 				return books;
-			throw new BookNotFoundException("No books under "+price+" rupees");
 		} finally {
 			DbConnection.closeConnection();
 		}
 	}
 
 	@Override
-	public List<Book> findByAuthorContainsAndGenre(String author, String genre) throws BookNotFoundException, SQLException {
+	public List<Book> findByAuthorContainsAndGenre(String author, String genre) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
 				PreparedStatement statement=connection.prepareStatement(Queries.QUERYBYAUTHORANDGENRE);){
 			statement.setString(1, author);
@@ -162,16 +157,14 @@ public class BookDaoImpl implements IBookDao {
 				book.setPrice(result.getDouble(5));
 				books.add(book);
 			}
-			if(!books.isEmpty())
 				return books;
-			throw new BookNotFoundException("No books written by author with "+author+" in name and genre of "+genre);
 		} finally {
 			DbConnection.closeConnection();
 		}
 	}
 
 	@Override
-	public Book findById(int bookId) throws BookNotFoundException, SQLException {
+	public Book findById(int bookId) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
 				PreparedStatement statement=connection.prepareStatement(Queries.QUERYBYBOOKID);){
 			statement.setInt(1, bookId);
@@ -185,9 +178,7 @@ public class BookDaoImpl implements IBookDao {
 				book.setGenre(result.getString(4));
 				book.setPrice(result.getDouble(5));
 			}
-			if(book != null)
 				return book;
-			throw new BookNotFoundException("No book with id: "+bookId);
 		} finally {
 			DbConnection.closeConnection();
 		}

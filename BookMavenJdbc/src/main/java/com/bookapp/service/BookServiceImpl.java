@@ -12,117 +12,71 @@ public class BookServiceImpl implements IBookService {
 	IBookDao bookDao = new BookDaoImpl();
 
 	@Override
-	public void addBook(Book book) {
-		try {
-			bookDao.addBook(book);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+	public void addBook(Book book) throws SQLException {
+				bookDao.addBook(book);
 	}
 
 	@Override
-	public List<Book> getAll() {
-		try {
-			return bookDao.findAll();
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return null;
+	public List<Book> getAll() throws BookNotFoundException, SQLException{
+			List<Book> books = bookDao.findAll();
+			if(books.isEmpty())
+				throw new BookNotFoundException("No books by in the database");
+			return books;
 	}
 
 	@Override
-	public List<Book> getByAuthorContains(String author) {
-		try {
-			return bookDao.findByAuthorContains(author);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} catch (BookNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return null;
+	public List<Book> getByAuthorContains(String author) throws BookNotFoundException, SQLException {
+			List<Book> books = bookDao.findByAuthorContains(author);
+			if(books.isEmpty()){
+				throw new BookNotFoundException("Book not found by "+author+" in author name");
+			}
+			return books;
+
 	}
 
 	@Override
-	public List<Book> getByGenre(String genre) {
-		try {
-			return bookDao.findByGenre(genre);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} catch (BookNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+	public List<Book> getByGenre(String genre) throws BookNotFoundException, SQLException {
+		List<Book> books = bookDao.findByGenre(genre);
+		if(books.isEmpty()){
+			throw new BookNotFoundException("Book not found in "+genre);
 		}
-		return null;
+		return books;
 	}
 
 	@Override
-	public List<Book> getByPriceLessThan(double price) {
-		try {
-			return bookDao.findByPriceLessThan(price);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} catch (BookNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return null;
+	public List<Book> getByPriceLessThan(double price) throws BookNotFoundException, SQLException  {
+			List<Book> books = bookDao.findByPriceLessThan(price);
+			if(books.isEmpty()){
+				throw new BookNotFoundException("Book not found for less than "+price+" rupees");
+			}
+			return books;
 	}
 
 	@Override
-	public List<Book> getByAuthorContainsAndGenre(String author, String genre) {
-		try {
-			return bookDao.findByAuthorContainsAndGenre(author, genre);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} catch (BookNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return null;
+	public List<Book> getByAuthorContainsAndGenre(String author, String genre) throws BookNotFoundException, SQLException {
+			List<Book> books = bookDao.findByAuthorContainsAndGenre(author, genre);
+			if(books.isEmpty()){
+				throw new BookNotFoundException("Book not found in "+genre+ " by "+author);
+			}
+			return books;
 	}
 
 	@Override
-	public Book getByBookId(int bookId) {
-		try {
-			return bookDao.findById(bookId);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} catch (BookNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return null;
+	public Book getByBookId(int bookId) throws BookNotFoundException, SQLException {
+			Book book = bookDao.findById(bookId);
+			if(book == null){
+				throw new BookNotFoundException("Book not found with id "+bookId);
+			}
+			return book;
 	}
 
 	@Override
-	public void updateBookPrice(int bookId, double price) {
-		try {
+	public void updateBookPrice(int bookId, double price)throws SQLException {
 			bookDao.updateBookPrice(bookId, price);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
 	}
 
 	@Override
-	public void deleteBook(int bookId) {
-		try {
+	public void deleteBook(int bookId) throws SQLException{
 			bookDao.deleteBook(bookId);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
 	}
 }

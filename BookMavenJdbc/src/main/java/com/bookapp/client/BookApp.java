@@ -1,8 +1,11 @@
 package com.bookapp.client;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.bookapp.exception.BookNotFoundException;
 import com.bookapp.model.Book;
 import com.bookapp.service.BookServiceImpl;
 import com.bookapp.service.IBookService;
@@ -27,10 +30,15 @@ public class BookApp {
 				mainMenu = scanner.nextLine();
 				switch (mainMenu) {
 				case "1":
-					List<Book> books = bookService.getAll();
-					System.out.println("\nBooks in the Library");
-					for (Book book : books)
-						System.out.println(book);
+					List<Book> books = new ArrayList<>();
+					try {
+						books = bookService.getAll();
+						System.out.println("\nBooks in the Library");
+						for (Book book : books)
+							System.out.println(book);
+					} catch (BookNotFoundException | SQLException e) {
+						System.out.println(e.getMessage());
+					}
 					break;
 				case "2":
 					System.out.println("Enter Book Details");
@@ -45,7 +53,11 @@ public class BookApp {
 					System.out.print("Price: ");
 					price = scanner.nextDouble();
 					scanner.nextLine();
-					bookService.addBook(new Book(bookId, title, author, genre, price));
+					try {
+						bookService.addBook(new Book(bookId, title, author, genre, price));
+					} catch (SQLException e) {
+						System.out.println(e.getMessage());
+					}
 					break;
 				case "3":
 					boolean flag = true;
@@ -58,29 +70,44 @@ public class BookApp {
 						case "1":
 							System.out.print("Enter the author: ");
 							author = scanner.nextLine();
-							List<Book> booksByAuthor = bookService.getByAuthorContains(author);
-							if (booksByAuthor != null) {
-								System.out.println("Books with author name containing " + author + " are: ");
-								booksByAuthor.forEach(System.out::println);
+							List<Book> booksByAuthor = new ArrayList<>();
+							try {
+								booksByAuthor = bookService.getByAuthorContains(author);
+								if (booksByAuthor != null) {
+									System.out.println("Books with author name containing " + author + " are: ");
+									booksByAuthor.forEach(System.out::println);
+								}
+							} catch (BookNotFoundException | SQLException e) {
+								System.out.println(e.getMessage());
 							}
 							break;
 						case "2":
 							System.out.print("Enter the genre: ");
 							genre = scanner.nextLine();
-							List<Book> booksByGenre = bookService.getByGenre(genre);
-							if (booksByGenre != null) {
-								System.out.println("Books in " + genre + " are: ");
-								booksByGenre.forEach(System.out::println);
+							List<Book> booksByGenre;
+							try {
+								booksByGenre = bookService.getByGenre(genre);
+								if (booksByGenre != null) {
+									System.out.println("Books in " + genre + " are: ");
+									booksByGenre.forEach(System.out::println);
+								}
+							} catch (BookNotFoundException | SQLException e) {
+								System.out.println(e.getMessage());
 							}
 							break;
 						case "3":
 							System.out.print("Enter the price: ");
 							price = scanner.nextDouble();
 							scanner.nextLine();
-							List<Book> booksByPrice = bookService.getByPriceLessThan(price);
-							if (booksByPrice != null) {
-								System.out.println("Books with price less than " + price + " rupees: ");
-								booksByPrice.forEach(System.out::println);
+							List<Book> booksByPrice;
+							try {
+								booksByPrice = bookService.getByPriceLessThan(price);
+								if (booksByPrice != null) {
+									System.out.println("Books with price less than " + price + " rupees: ");
+									booksByPrice.forEach(System.out::println);
+								}
+							} catch (BookNotFoundException | SQLException e) {
+								System.out.println(e.getMessage());
 							}
 							break;
 						case "4":
@@ -88,20 +115,31 @@ public class BookApp {
 							author = scanner.nextLine();
 							System.out.print("Enter the genre: ");
 							genre = scanner.nextLine();
-							List<Book> booksByAuthorAndPrice = bookService.getByAuthorContainsAndGenre(author, genre);
-							if (booksByAuthorAndPrice != null) {
-								System.out.println("Books written by author with " + author + " and genre " + genre);
-								booksByAuthorAndPrice.forEach(System.out::println);
+							List<Book> booksByAuthorAndPrice;
+							try {
+								booksByAuthorAndPrice = bookService.getByAuthorContainsAndGenre(author, genre);
+								if (booksByAuthorAndPrice != null) {
+									System.out
+											.println("Books written by author with " + author + " and genre " + genre);
+									booksByAuthorAndPrice.forEach(System.out::println);
+								}
+							} catch (BookNotFoundException | SQLException e) {
+								System.out.println(e.getMessage());
 							}
 							break;
 						case "5":
 							System.out.print("Enter the book Id: ");
 							bookId = scanner.nextInt();
 							scanner.nextLine();
-							Book book = bookService.getByBookId(bookId);
-							if (book != null) {
-								System.out.println("Book with Id: " + bookId);
-								System.out.println(book.toString());
+							Book book;
+							try {
+								book = bookService.getByBookId(bookId);
+								if (book != null) {
+									System.out.println("Book with Id: " + bookId);
+									System.out.println(book.toString());
+								}
+							} catch (BookNotFoundException | SQLException e) {
+								System.out.println(e.getMessage());
 							}
 							break;
 						case "6":
@@ -119,13 +157,21 @@ public class BookApp {
 					System.out.println("Enter the new price: ");
 					price = scanner.nextDouble();
 					scanner.nextLine();
-					bookService.updateBookPrice(bookId, price);
+					try {
+						bookService.updateBookPrice(bookId, price);
+					} catch (SQLException e) {
+						System.out.println(e.getMessage());
+					}
 					break;
 				case "5":
 					System.out.println("Enter the BookId: ");
 					bookId = scanner.nextInt();
 					scanner.nextLine();
-					bookService.deleteBook(bookId);
+					try {
+						bookService.deleteBook(bookId);
+					} catch (SQLException e) {
+						System.out.println(e.getMessage());
+					}
 					break;
 				case "6":
 					System.out.println("ThankYou...");
