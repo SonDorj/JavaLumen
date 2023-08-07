@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.bookapp.exception.BookNotFoundException;
 import com.bookapp.model.Book;
 import com.bookapp.util.Queries;
 
@@ -17,7 +16,7 @@ public class BookDaoImpl implements IBookDao {
 	@Override
 	public void addBook(Book book) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
-				PreparedStatement statement=connection.prepareStatement(Queries.INSERTQUERY);){
+				PreparedStatement statement = connection.prepareStatement(Queries.INSERTQUERY);) {
 			statement.setInt(1, book.getBookId());
 			statement.setString(2, book.getTitle());
 			statement.setString(3, book.getAuthor());
@@ -31,9 +30,9 @@ public class BookDaoImpl implements IBookDao {
 	}
 
 	@Override
-	public void updateBookPrice(int bookId, double price) throws SQLException  {
+	public void updateBookPrice(int bookId, double price) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
-				PreparedStatement statement=connection.prepareStatement(Queries.UPDATEPRICEQUERY);){
+				PreparedStatement statement = connection.prepareStatement(Queries.UPDATEPRICEQUERY);) {
 			statement.setDouble(1, price);
 			statement.setInt(2, bookId);
 			statement.execute();
@@ -45,7 +44,7 @@ public class BookDaoImpl implements IBookDao {
 	@Override
 	public void deleteBook(int bookId) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
-				PreparedStatement statement=connection.prepareStatement(Queries.DELETEQUERY);){
+				PreparedStatement statement = connection.prepareStatement(Queries.DELETEQUERY);) {
 			statement.setDouble(1, bookId);
 			statement.execute();
 		} finally {
@@ -56,10 +55,10 @@ public class BookDaoImpl implements IBookDao {
 	@Override
 	public List<Book> findAll() throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
-				PreparedStatement statement=connection.prepareStatement(Queries.QUERYALL);){
+				PreparedStatement statement = connection.prepareStatement(Queries.QUERYALL);) {
 			ResultSet result = statement.executeQuery();
 			List<Book> books = new ArrayList<Book>();
-			while(result.next()) {
+			while (result.next()) {
 				Book book = new Book();
 				book.setBookId(result.getInt(1));
 				book.setTitle(result.getString(2));
@@ -77,11 +76,11 @@ public class BookDaoImpl implements IBookDao {
 	@Override
 	public List<Book> findByAuthorContains(String author) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
-				PreparedStatement statement=connection.prepareStatement(Queries.QUERYBYAUTHOR);){
+				PreparedStatement statement = connection.prepareStatement(Queries.QUERYBYAUTHOR);) {
 			statement.setString(1, author);
 			ResultSet result = statement.executeQuery();
 			List<Book> books = new LinkedList<>();
-			while(result.next()) {
+			while (result.next()) {
 				Book book = new Book();
 				book.setBookId(result.getInt(1));
 				book.setTitle(result.getString(2));
@@ -97,13 +96,13 @@ public class BookDaoImpl implements IBookDao {
 	}
 
 	@Override
-	public List<Book> findByGenre(String genre) throws SQLException{
+	public List<Book> findByGenre(String genre) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
-				PreparedStatement statement=connection.prepareStatement(Queries.QUERYBYGENRE);){
+				PreparedStatement statement = connection.prepareStatement(Queries.QUERYBYGENRE);) {
 			statement.setString(1, genre);
 			ResultSet result = statement.executeQuery();
 			List<Book> books = new LinkedList<>();
-			while(result.next()) {
+			while (result.next()) {
 				Book book = new Book();
 				book.setBookId(result.getInt(1));
 				book.setTitle(result.getString(2));
@@ -112,7 +111,7 @@ public class BookDaoImpl implements IBookDao {
 				book.setPrice(result.getDouble(5));
 				books.add(book);
 			}
-				return books;
+			return books;
 		} finally {
 			DbConnection.closeConnection();
 		}
@@ -121,11 +120,11 @@ public class BookDaoImpl implements IBookDao {
 	@Override
 	public List<Book> findByPriceLessThan(double price) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
-				PreparedStatement statement=connection.prepareStatement(Queries.QUERYBYPRICELESSTHAN);){
+				PreparedStatement statement = connection.prepareStatement(Queries.QUERYBYPRICELESSTHAN);) {
 			statement.setDouble(1, price);
 			ResultSet result = statement.executeQuery();
 			List<Book> books = new LinkedList<>();
-			while(result.next()) {
+			while (result.next()) {
 				Book book = new Book();
 				book.setBookId(result.getInt(1));
 				book.setTitle(result.getString(2));
@@ -134,7 +133,7 @@ public class BookDaoImpl implements IBookDao {
 				book.setPrice(result.getDouble(5));
 				books.add(book);
 			}
-				return books;
+			return books;
 		} finally {
 			DbConnection.closeConnection();
 		}
@@ -143,12 +142,12 @@ public class BookDaoImpl implements IBookDao {
 	@Override
 	public List<Book> findByAuthorContainsAndGenre(String author, String genre) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
-				PreparedStatement statement=connection.prepareStatement(Queries.QUERYBYAUTHORANDGENRE);){
+				PreparedStatement statement = connection.prepareStatement(Queries.QUERYBYAUTHORANDGENRE);) {
 			statement.setString(1, author);
 			statement.setString(2, genre);
 			ResultSet result = statement.executeQuery();
 			List<Book> books = new LinkedList<>();
-			while(result.next()) {
+			while (result.next()) {
 				Book book = new Book();
 				book.setBookId(result.getInt(1));
 				book.setTitle(result.getString(2));
@@ -157,7 +156,7 @@ public class BookDaoImpl implements IBookDao {
 				book.setPrice(result.getDouble(5));
 				books.add(book);
 			}
-				return books;
+			return books;
 		} finally {
 			DbConnection.closeConnection();
 		}
@@ -166,11 +165,11 @@ public class BookDaoImpl implements IBookDao {
 	@Override
 	public Book findById(int bookId) throws SQLException {
 		try (Connection connection = DbConnection.openConnection();
-				PreparedStatement statement=connection.prepareStatement(Queries.QUERYBYBOOKID);){
+				PreparedStatement statement = connection.prepareStatement(Queries.QUERYBYBOOKID);) {
 			statement.setInt(1, bookId);
 			ResultSet result = statement.executeQuery();
 			Book book = null;
-			while(result.next()) {
+			while (result.next()) {
 				book = new Book();
 				book.setBookId(result.getInt(1));
 				book.setTitle(result.getString(2));
@@ -178,7 +177,7 @@ public class BookDaoImpl implements IBookDao {
 				book.setGenre(result.getString(4));
 				book.setPrice(result.getDouble(5));
 			}
-				return book;
+			return book;
 		} finally {
 			DbConnection.closeConnection();
 		}

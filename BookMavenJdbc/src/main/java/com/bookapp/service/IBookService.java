@@ -13,7 +13,7 @@ public interface IBookService {
 
 	void deleteBook(int bookId) throws SQLException;
 
-	List<Book> getAll() throws BookNotFoundException,SQLException;
+	List<Book> getAll() throws BookNotFoundException, SQLException;
 
 	List<Book> getByAuthorContains(String author) throws BookNotFoundException, SQLException;
 
