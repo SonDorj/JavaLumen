@@ -57,7 +57,9 @@
   - Add Grocery
   - Search Grocery (By Name)
 
-### :shopping_bags: User Privilege:
+### :white_check_mark: User Privilege:
 - **Actions:**
   - Add Item to Cart
   - Buy Items from Cart
+
+### Run populate in util to populate the inventory
