@@ -1,4 +1,5 @@
 # Grocery Shop Application
+### Deployable War is in Deploy Folder
 
 ## :shopping_cart: Domain: Grocery Shop
 
