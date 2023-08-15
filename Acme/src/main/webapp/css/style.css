@@ -1,0 +1,174 @@
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+/*----------Nav Bar------------*/
+
+.nav-container {
+	background-color: #fff;
+	padding: 10px 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	text-align: right;
+	display: flex;
+	align-items: center;
+	justify-content: space-between
+}
+
+.nav-items {
+	display: flex;
+	align-items: center;
+}
+
+.nav-item {
+	padding: 10px;
+	margin: 2px;
+	border-bottom: 1px solid #ccc;
+	transition: background-color 0.3s ease-in-out;
+	text-decoration: none;
+	color: #333;
+}
+
+button.nav-item, input.nav-item{
+	border: none;
+}
+
+.nav-item:hover {
+	background-color: #f2f2f2;
+}
+
+/*------Login-------------*/
+.login-container {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	max-width: 400px;
+	width: 100%;
+	text-align: center;
+}
+
+.login-container h1 {
+	margin-bottom: 20px;
+}
+
+.input-field {
+	width: 80%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	outline: none;
+}
+
+.login-button {
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+
+.login-button:hover {
+	background-color: #0056b3;
+}
+
+/*  --------Main User------------*/
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+	text-align: center;
+}
+
+table {
+	width: 60%;
+	margin: 0 auto;
+	border-collapse: collapse;
+	border: 1px solid #ddd;
+}
+
+th,
+td {
+	border-bottom: 1px solid #ddd;
+	padding: 8px;
+	text-align: right;
+}
+
+th {
+	background-color: #f2f2f2;
+	font-weight: bold;
+	text-align: center;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+tr:hover {
+	background-color: #e0e0e0;
+}
+
+td.text-align-left {
+	text-align: left;
+}
+
+td.text-align-center {
+	text-align: center;
+}
+.edit-button{
+	border: none;
+	background-color: transparent;
+	font-size: 25px;
+	margin: 0;
+	padding: 0;
+}
+.edit-button:hover {
+	color: #aa0000;
+}
+
+/*----------form-----------------*/
+.form-container {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	max-width: 400px;
+	width: 100%;
+	margin: 20px auto;
+}
+
+.form-field {
+	width: 80%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	outline: none;
+	transition: border-color 0.3s ease-in-out;
+}
+
+.form-field:focus {
+	border-color: #007bff;
+}
+
+.form-button {
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+
+.form-button:hover {
+	background-color: #0056b3;
+}

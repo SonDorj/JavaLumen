@@ -1,14 +1,16 @@
-package com.grocer.dao;
+package com.acme.dao;
 
-import java.util.Map;
-import com.grocer.model.Grocery;
+import java.util.List;
 
-public interface IInventoryDao extends AutoCloseable {
+import com.acme.model.Grocery;
+
+public interface IInventoryDao extends AutoCloseable{
 	public int insertGrocery(Grocery grocery);
 	public int updateGrocery(int groceryId, Grocery grocery);
 	public int deleteGrocery(int groceryId);
 	public int updateStock(int groceryId, int stock);
-	public Map<Integer, Grocery> fetchAll();
+	public List<Grocery> fetchAll();
+	public List<Grocery> fetchByName(String name);
 	public Grocery fetchByID(int groceryId);
 	@Override
 	void close();

@@ -2,27 +2,32 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Map;
 
-import com.grocer.dao.DBConnection;
+import com.grocer.dao.DBInventoryConnection;
 import com.grocer.dao.IInventoryDao;
 import com.grocer.dao.InventoryDaoImpl;
-import com.grocer.exception.GroceryNotFoundException;
 import com.grocer.model.Grocery;
 
 public class temp {
 	public static void main(String[] args) {
 		try {
 			IInventoryDao service = new InventoryDaoImpl();
-			Grocery grocery = new Grocery();
-			grocery.setGrocery("Book");
-			grocery.setPrice(300d);
-			grocery.setStock(102);
-			System.out.println(service.insertGrocery(grocery));
-//			System.out.println(service.deleteGrocery(5));
-			Map<Integer, Grocery> result = service.fetchAll();
-			Collection <Grocery> items = result.values();
-			items.stream().forEach(System.out::println);
-			DBConnection.closeConnection();
-		} catch (SQLException | GroceryNotFoundException e) {
+//			PopulateInventory.populate();
+//			System.out.println(service.updateStock(1, 5));
+//			System.out.println(service.fetchByID(1));
+//			System.out.println(service.deleteGrocery(68));
+			DBInventoryConnection.closeConnection();
+			
+//			Grocery grocery = this.fetchByID(groceryId);
+//			if (grocery == null)
+//				throw new GroceryNotFoundException("Grocery Id doesn't exist");
+//			int oldStock = grocery.getStock();
+//			if (oldStock < stock)
+//				throw new StockLimitExceededException("Not enough Stock");
+			Map<Integer, Grocery> groceries = service.fetchAll();
+			Collection<Grocery> prin = groceries.values();
+			prin.stream().forEach(System.out::println);
+			
+		} catch (SQLException  e) {
 			System.out.println(e.getMessage());
 		}
 	}

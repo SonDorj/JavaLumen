@@ -1,9 +1,9 @@
 package com.grocer.model;
 
 public class Grocery {
-	String grocery;
-	Double price;
-	Integer stock;
+	private String grocery;
+	private double price;
+	private int stock;
 
 	public Grocery() {
 		super();

@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import com.grocer.util.Query;
+import com.grocer.util.QueryInventory;
 
-public class DBConnection {
+public class DBInventoryConnection {
 	private static Connection connection=null;
 	public static Connection openConnection() throws SQLException {
 		//connection properties
@@ -17,7 +17,7 @@ public class DBConnection {
 		connection = DriverManager.getConnection(url,user,password);
 		if(connection!=null) {
 			Statement statement = connection.createStatement();
-			statement.execute(Query.CREATE);
+			statement.execute(QueryInventory.CREATE);
 			return connection;
 		}
 		throw new SQLException("connection not succesfull");
